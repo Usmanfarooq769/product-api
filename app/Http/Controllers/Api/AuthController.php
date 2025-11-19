@@ -23,8 +23,6 @@ class AuthController extends Controller
                 'email' => $validated['email'],
                 'password' => $validated['password'], 
             ]);
-
-            // Create token for the user
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
@@ -56,8 +54,6 @@ class AuthController extends Controller
             ], 500);
         }
     }
-
-    //Login user and create token
     public function login(Request $request)
     {
         try {
@@ -67,8 +63,6 @@ class AuthController extends Controller
             ]);
 
             $user = User::where('email', $validated['email'])->first();
-
-            // Check if user exists and password is correct
             if (!$user || !Hash::check($validated['password'], $user->password)) {
                 return response()->json([
                     'success' => false,
@@ -78,11 +72,6 @@ class AuthController extends Controller
                     ]
                 ], 401);
             }
-
-            // Delete old tokens (optional - for single session)
-            // $user->tokens()->delete();
-
-            // Create new token
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
@@ -114,7 +103,7 @@ class AuthController extends Controller
         }
     }
 
-    // Logout user (revoke token)
+    // Logout user 
     public function logout(Request $request)
     {
         try {
@@ -134,7 +123,7 @@ class AuthController extends Controller
         }
     }
 
-    // Get authenticated user
+    // Get auth user
     public function user(Request $request)
     {
         return response()->json([

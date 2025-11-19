@@ -66,7 +66,7 @@ class ProductController extends Controller
         }
     }
 
-   // Store a newly created product
+   // Store 
     public function store(Request $request)
     {
         try {
@@ -104,7 +104,7 @@ class ProductController extends Controller
             ], 500);
         }
     }
-   // Display the specified product
+   // show the product
      
     public function show($id)
     {
@@ -133,8 +133,7 @@ class ProductController extends Controller
         }
     }
 
-   // Update the specified product
-   
+   // Update the product 
     public function update(Request $request, $id)
     {
         try {
@@ -180,7 +179,7 @@ class ProductController extends Controller
         }
     }
 
-   // Remove the specified product
+   // delete the product product
     public function destroy($id)
     {
         try {
